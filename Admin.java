@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 
 public class Admin extends User{
 
-   
+   private ArrayList <Patient> patientList = new ArrayList<Patient>(); 
     //creating admin
 	public Admin(String username, String password, String firstName, String lastName) {
 		super(username, password, firstName, lastName, true, false, false);
@@ -20,6 +21,14 @@ public class Admin extends User{
         if(isNurse){
             new Nurse(username, password, firstName, lastName);
         }
+    }
+
+    //Creating Patient
+    public void createPatient(String name, String address, String medHistory, String diagnosis){
+        patientList.add(new Patient(name, address, medHistory ,diagnosis));
+    }
+    public void createPatient(Patient patient){
+        patientList.add(patient);
     }
 
     
@@ -68,6 +77,34 @@ public class Admin extends User{
         }
 
         return info;
+    }
+
+    public void addAppointment(CalendarDate day, String appReason,Patient patient ,Doctor doc){
+        patient.addAppointment(new Appointment(day, appReason, patient, doc));
+    }
+    public void addAppointment(Appointment appointment){
+        Patient temp = appointment.getPatient();
+        temp.addAppointment(appointment);
+    } 
+
+    public void rescheduleAppointment(CalendarDate oldDay, CalendarDate newDate, String appReason,Patient patient ,Doctor doc){
+        cancelAppointment(oldDay, appReason, patient, doc);
+        addAppointment(newDate, appReason, patient, doc);
+        
+    }
+    public void cancelAppointment(CalendarDate date, String appReason,Patient patient ,Doctor doc){
+        Appointment temp = new Appointment(date, appReason, patient, doc);
+        cancelAppointment(temp);
+
+    }
+    public void cancelAppointment(Appointment appointment){
+        ArrayList <Appointment> appointments = appointment.getPatient().getAppointments();
+        for(int i = 0; i < appointments.size(); i++){
+            Appointment temp = appointments.get(i);
+            if(temp.getDate() == appointment.getDate() && temp.getPatient() == appointment.getPatient() && temp.getDoc() == appointment.getDoc()){
+                appointments.remove(i);
+            }
+        }
     }
 
 
