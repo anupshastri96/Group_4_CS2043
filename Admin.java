@@ -30,6 +30,22 @@ public class Admin extends User{
     public void createPatient(Patient patient){
         patientList.add(patient);
     }
+    public String viewPatientRecord(String name, String address, String medHistory, String diagnosis){
+        return viewPatientRecord(new Patient(name, address, medHistory, diagnosis));
+    }
+    public String viewPatientRecord(Patient patient){
+        return patient.patientToString();
+    }
+
+    public void viewStaffSchedule(){
+       for(int i = 0; i < userList.size(); i++){
+            displayStaffSchedule(userList.get(i));
+            System.out.println("\n");
+       }
+    }
+
+
+
 
     
 

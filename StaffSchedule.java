@@ -17,7 +17,7 @@ public class StaffSchedule {
         displayStaffSchedule(admin1);
     }
 
-    private static void displayStaffSchedule(User user) {
+    public static void displayStaffSchedule(User user) {
         System.out.println("Schedule for " + user.getFirstName() + " " + user.getLastName() + ":");
         for (Shift shift : user.getShifts()) {
             System.out.println(shift);
