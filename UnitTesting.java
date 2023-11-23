@@ -88,7 +88,20 @@ public class UnitTesting{
     
     @Test
     public void testMedicalSupplies() {
+	MedicalSupply Supply = new MedicalSupply("Bandages", 50, new Date());
 
+	assertEquals("Bandages", Supply.getName());
+        assertEquals(50, Supply.getQuantity());
+        assertNotNull(Supply.expirationDate());
+
+        Supply.setName("Sanitizer");
+        Supply.setQuantity(100);
+        Supply.setExpiryDate(new Date());
+
+        assertEquals("Sanitizer", Supply.getName());
+        assertEquals(100, Supply.getQuantity());
+        assertNotNull(Supply.expirationDate());
+	    
     }
 
     @Test
