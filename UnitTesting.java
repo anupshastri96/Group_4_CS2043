@@ -106,12 +106,24 @@ public class UnitTesting{
 
     @Test
     public void testMedicalSupplyInventory() {
+        MedicalSupplyInventory inventory = new MedicalSupplyInventory();
 
+        inventory.addSupply("Bandages", 50, new Date());
+        inventory.addSupply("Antiseptic Wipes", 30, new Date());
+        inventory.addSupply("Needles", 100, new Date());
+
+        inventory.updateSupply("Bandages", 60, new Date());
+
+        assertEquals(60, inventory.getSupplies().get(0).getQuantity());
     }
 
     @Test
     public void testShift() {
+	Shift shift = new Shift("Monday", "9:00 AM", "5:00 PM");
 
+        assertEquals("Monday", shift.getDay());
+        assertEquals("9:00 AM", shift.getStartTime());
+        assertEquals("5:00 PM", shift.getEndTime());
     }
 
     @Test
