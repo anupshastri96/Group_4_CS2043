@@ -65,6 +65,21 @@ public class Testing {
         admin3.addAppointment(new Appointment(date1, appReason,patient2, doctor3));
         System.out.print(patient1.appointmentToString());
         System.out.println(patient2.appointmentToString());
+        
+
+        System.out.println("**** Testing if admin can view patient record****");
+        System.out.println(admin3.viewPatientRecord(patient2));
+
+        System.out.println("**** Testing if admin can view staff scheudle ****");
+        Nurse nurse5 = new Nurse("nurse1", "123", "John", "Doe");
+        Doctor doctor5 = new Doctor("doc1", "456", "Jane", "Alexander");
+        Admin admin5 = new Admin("admin1", "789", "Chris", "Jackson");
+
+        nurse1.addShift(new Shift("Monday", "9:00 AM", "5:00 PM"));
+        doctor1.addShift(new Shift("Wednesday", "1:00 PM", "9:00 PM"));
+
+        admin3.viewStaffSchedule();
+
 
     }
 }

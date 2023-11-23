@@ -17,6 +17,11 @@ public class Patient {
         this.diagnosis = diagnosis;
         this.appointments = new ArrayList<Appointment>();
     }
+    public String patientToString(){
+        String temp = "";
+        temp += ("Patient Name: " + name + " Patient Adress: " + address + "\nPatient Medical History: "  + medHistory + "\nPatient Diagnosis: " + diagnosis + "\nAppointments: " + appointmentToString());
+        return temp;
+    }
 
     public String getName(){
         return name;
