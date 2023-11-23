@@ -33,6 +33,26 @@ public class UnitTesting{
 
     @Test
     public void testAdmin() {
+         Admin admin3 = new Admin("admin3_username", "admin3_password", "admin3_Fname", "admin3_Lname");
+         assertEquals(admin3.getFName(), "admin3_Fname");
+         assertEquals(admin3.getLname(), "admin3_Fname");
+         assertEquals(admin3.getUserName(), "admin3_username");
+         assertEquals (admin3.isAdmin(), true);
+         assertEquals (admin3.isDcotor(), false);
+         assertEquals (admin3.isNurse(), false);
+         assertEquals(admin3.toString(),"admin3_Lname, admin3_Fname --username: admin3_username");
+
+        Doctor doctor1 = new Doctor("doc1_username", "doc1_password", "doc1_Fname", "doc1_Lname");
+        Nurse nurse1 = new Nurse("nurse1_username", "nurse1_password", "nurse1_Fname", "nurse1_Lname");
+        assertEquals(admin3.viewStaffRecords(),"Admin: admin3_Lname, admin3_Fname --username: admin3_username\nDoctor: doc1_Lname, doc1_Fname --username: doc1_username\nNurse: nurse1_Lname, nurse1_Fname --username: nurse1_username");
+        admin3.deleteUser("doc1_username");
+        assertEquals(admin3.viewStaffRecords(),"Admin: admin3_Lname, admin3_Fname --username: admin3_username\nNurse: nurse1_Lname, nurse1_Fname --username: nurse1_username");
+
+        admin3.updateUser("nurse1_username", "nurse1_newUsername","nurse1_password", "nurse1_Fname", "nurse1_Lname", false, false, true);
+        assertEquals(admin3.viewStaffRecords(),"Admin: admin3_Lname, admin3_Fname --username: admin3_username\nNurse: nurse1_Lname, nurse1_Fname --username: nurse1_newUsername");
+
+        admin3.updateUser("nurse1_newUsername", "doctor4_username","doc4_password", "doc4_Fname", "doc4_Lname", false, true, false);
+        assertEquals(admin3.viewStaffRecords(), "Admin: admin3_Lname, admin3_Fname --username: admin3_username\nDoctor: doc4_Lname, doc4_Fname --username: doctor4_username" );
 
     }
 
